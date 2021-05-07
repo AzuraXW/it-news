@@ -1,12 +1,22 @@
 'use strict';
 const db = uniCloud.database()
 exports.main = async (event, context) => {
-	const { classify } = event
+	const { 
+		classify,
+		page = 1,
+		pageSize = 6
+	} = event
+	let match = {}
+	if (classify !== '全部') {
+		match = {
+			classify
+		}
+	}
 	let list = await db.collection('article')
 	.aggregate()
-	.match({
-		classify
-	})
+	.match(match)
+	.skip(pageSize * (page - 1))
+	.limit(pageSize)
 	.project({
 		content: false
 	})

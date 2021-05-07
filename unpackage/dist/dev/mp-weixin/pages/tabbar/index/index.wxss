@@ -45,4 +45,9 @@ page {
 .home .cards {
   padding: 15px;
 }
+.home .home-list {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+}
 

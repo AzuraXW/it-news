@@ -35,6 +35,9 @@
 			// 获取tab数据
 			async getNavbatList () {
 				const { data: { data } } = await this.$api.getLabel()
+				data.unshift({
+					name: '全部'
+				})
 				this.navbarList = data
 			},
 			onSwitchTab (args) {
@@ -59,6 +62,9 @@
 		flex: 1;
 		.cards{
 			padding: 15px;
+		}
+		.home-list{
+			flex: 1;
 		}
 	}
 </style>

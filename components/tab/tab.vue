@@ -53,6 +53,7 @@
 		watch: {
 			swiperActiveIndex (newVal, oldVal) {
 				this.activeIndex = newVal
+				this.$emit('switchTab', [this.list[newVal], newVal])
 			}
 		}
 	}

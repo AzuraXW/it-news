@@ -3,7 +3,7 @@
 		<swiper-item
 		class="swiper-item"
 		v-for="(item, index) in tabList">
-			<list-item :list="cacheListData[index]"></list-item>
+			<list-item :list="cacheListData[index] || []" :load="loadInfo[index]"></list-item>
 		</swiper-item>
 	</swiper>
 </template>
@@ -26,7 +26,9 @@
 		},
 		data() {
 			return {
-				cacheListData: {}
+				cacheListData: {},
+				pageSize: 6,
+				loadInfo: {}
 			};
 		},
 		watch: {
@@ -41,13 +43,37 @@
 				// 向父组件传递索引
 				this.$emit('swiperChange', current)
 				// 切换时重新获取数据
-				this.getList(current)
+				if (!this.cacheListData[current] || this.cacheListData[current].length === 0) {
+					this.getList(current)
+				}
 			},
 			async getList (current) {
+				if (!this.loadInfo[current]) {
+					this.$set(this.loadInfo, current, {
+						page: 1,
+						loading: 'loading'
+					})
+				} else {
+					this.loadInfo[current].page++;
+				}
 				const { data: article } = await this.$api.getList({
-					classify: this.tabList[current].name
+					classify: this.tabList[current].name,
+					page: this.loadInfo[current].page,
+					pageSize: 6
 				})
-				this.$set(this.cacheListData, current, article)
+				if (article.length === 0) {
+					this.loadInfo[current].loading = 'noMore';
+					return
+				}
+				if (!this.cacheListData[current] || this.cacheListData[current].length === 0) {
+					this.$set(this.cacheListData, current, article)
+				} else {
+					this.cacheListData[current].push(...article)
+				}
+			},
+			loadMore () {
+				if (this.loadInfo[this.tabActiveIndex].loading === 'noMore') return
+				this.getList(this.tabActiveIndex)
 			}
 		},
 		components: {
