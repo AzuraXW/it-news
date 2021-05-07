@@ -40,6 +40,7 @@
   display: -webkit-flex;
   display: flex;
   overflow: hidden;
+  position: relative;
 }
 .list-wrapper .list-card .card-images {
   margin-right: 10px;
@@ -48,6 +49,20 @@
   width: 80px;
   height: 80px;
   display: block;
+}
+.list-wrapper .list-card .card-title {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+}
+.list-wrapper .list-card .card-title text {
+  -webkit-box-flex: 1;
+  -webkit-flex: 1;
+          flex: 1;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
 }
 .list-wrapper .list-card .card-content {
   display: -webkit-box;
@@ -87,12 +102,6 @@
   -webkit-box-direction: normal;
   -webkit-flex-direction: column;
           flex-direction: column;
-}
-.list-wrapper .list-card.mode-column .card-title {
-  width: 100%;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 .list-wrapper .list-card.mode-column .card-images {
   display: -webkit-box;

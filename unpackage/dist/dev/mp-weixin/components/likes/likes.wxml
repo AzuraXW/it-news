@@ -1,0 +1,1 @@
+<view data-event-opts="{{[['tap',[['collection',['$0'],['article_id']]]]]}}" class="collection-btn" catchtap="__e"><uni-icons class="icon" vue-id="c670a8f0-1" type="{{iconType}}" size="20" color="#bca73f" bind:__l="__l"></uni-icons></view>

@@ -173,6 +173,7 @@ Object.defineProperty(exports, "__esModule", { value: true });exports.default = 
                   _this.loadInfo[current].page++;
                 }_context.next = 3;return (
                   _this.$api.getList({
+                    user_id: '608e55967115bc000163dcf5',
                     classify: _this.tabList[current].name,
                     page: _this.loadInfo[current].page,
                     pageSize: 6 }));case 3:_yield$_this$$api$get = _context.sent;article = _yield$_this$$api$get.data;if (!(

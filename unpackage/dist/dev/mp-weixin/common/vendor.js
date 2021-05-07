@@ -2063,7 +2063,7 @@ webpackContext.id = 12;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });exports.getLabel = getLabel;exports.getList = getList;var _http = _interopRequireDefault(__webpack_require__(/*! ../http.js */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
+Object.defineProperty(exports, "__esModule", { value: true });exports.getLabel = getLabel;exports.getList = getList;exports.up = up;var _http = _interopRequireDefault(__webpack_require__(/*! ../http.js */ 14));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}
 
 function getLabel(data) {
   return (0, _http.default)({
@@ -2075,6 +2075,13 @@ function getLabel(data) {
 function getList(data) {
   return (0, _http.default)({
     url: 'get_list',
+    data: data });
+
+}
+
+function up(data) {
+  return (0, _http.default)({
+    url: 'update_likes',
     data: data });
 
 }

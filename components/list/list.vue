@@ -57,6 +57,7 @@
 					this.loadInfo[current].page++;
 				}
 				const { data: article } = await this.$api.getList({
+					user_id: '608e55967115bc000163dcf5',
 					classify: this.tabList[current].name,
 					page: this.loadInfo[current].page,
 					pageSize: 6

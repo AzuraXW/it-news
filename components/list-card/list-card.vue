@@ -6,7 +6,8 @@
 			</view>
 			<view class="card-content">
 				<view class="card-title">
-					{{ item.title }}
+					<text>{{ item.title }}</text>
+					<likes :article_id="item._id" :likes.sync="item.is_likes"></likes>
 				</view>
 				<view class="card-description">
 					<view class="card-classification-tag">
@@ -20,7 +21,8 @@
 		</view>
 		<view class="list-card mode-column" v-if="mode === 'column'">
 			<view class="card-title">
-				{{ item.title }}
+				<text>{{ item.title }}</text>
+				<likes :article_id="item._id" :likes.sync="item.is_likes"></likes>
 			</view>
 			<view class="card-content">
 				<view class="card-images">
@@ -42,7 +44,8 @@
 			</view>
 			<view class="card-content">
 				<view class="card-title">
-					{{ item.title }}
+					<text>{{ item.title }}</text>
+					<likes :article_id="item._id" :likes.sync="item.is_likes"></likes>
 				</view>
 				<view class="card-description">
 					<view class="card-classification-tag">
@@ -92,6 +95,7 @@
 		box-shadow: 0 0 8px 2px #e8e0e0;
 		display: flex;
 		overflow: hidden;
+		position: relative;
 		.card-images{
 			margin-right: 10px;
 			image{
@@ -100,14 +104,21 @@
 				display: block;
 			}
 		}
+		.card-title{
+			display: flex;
+			text{
+				flex: 1;
+				display: -webkit-box;
+				-webkit-box-orient: vertical;
+				-webkit-line-clamp: 1;
+				overflow: hidden;
+			}
+		}
 		.card-content{
 			display: flex;
 			flex: 1;
 			flex-direction: column;
 			justify-content: space-between;
-			.card-title{
-				
-			}
 			.card-description{
 				display: flex;
 				justify-content: space-between;
@@ -123,12 +134,6 @@
 		}
 		&.mode-column{
 			flex-direction: column;
-			.card-title{
-				width: 100%;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
 			.card-images{
 				display: flex;
 				justify-content: space-between;

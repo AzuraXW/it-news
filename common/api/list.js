@@ -13,3 +13,11 @@ export function getList (data) {
 		data
 	})
 }
+
+export function up (data) {
+	return http({
+		url: 'update_likes',
+		data
+	})
+}
+
