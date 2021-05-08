@@ -1,5 +1,5 @@
 <template>
-	<view class="list-wrapper">
+	<view class="list-wrapper" @click="$emit('click')">
 		<view class="list-card" v-if="mode === 'base'">
 			<view class="card-images">
 				<image :src="item.cover[0]" mode="aspectFill" :lazy-load="true" fade-show></image>

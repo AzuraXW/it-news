@@ -21,3 +21,9 @@ export function up (data) {
 	})
 }
 
+export function getSearch (data) {
+	return http({
+		url: 'get_search',
+		data
+	})
+}

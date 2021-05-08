@@ -1,18 +1,36 @@
 <template>
-	<view class="navbar-wrapper">
+	<view class="navbar-wrapper" @click="goSearch">
 		<view class="navbar">
 			<view :style="{height: statusBarHeight + 'px'}"></view>
-			<view class="navbar-content" :style="{
+			<view class="navbar-content"
+			:style="{
 				width: navbarWidht + 'px',
 				height: navbarHeight + 'px',
-			}">
-				<view class="navbar-search">
+			}"
+			:class="{
+				search: isSearch
+			}"
+			>
+				<view class="back-btn" v-if="isSearch" @click="goBack()">
+					<uni-icons type="arrowleft" size="22" color="#fff"></uni-icons>
+				</view>
+				<view class="navbar-search" v-if="!isSearch">
 					<view class="navbar-search-icon">
 						<uni-icons type="search"></uni-icons>
 					</view>
 					<view class="navbar-search-text">
 						uni-app、vue
 					</view>
+				</view>
+				<view class="navbar-search" v-else>
+					<input
+						type="text"
+						placeholder="请输入搜索关键字"
+						auto-focus
+						class="search-input"
+						v-model="val"
+						@input="search"
+					/>
 				</view>
 			</view>
 		</view>
@@ -23,13 +41,29 @@
 <script>
 	export default {
 		name:"navbar",
+		props: {
+			isSearch: {
+				type: Boolean,
+				default: false
+			},
+			value: {
+				type: String
+			}
+		},
 		data() {
 			return {
 				statusBarHeight: 0,
 				navbarHeight: 45,
 				navbarWidht: 0,
-				fillHeight: 45
+				fillHeight: 45,
+				val: ''
 			};
+		},
+		watch: {
+			// 监听外部搜索关键字的变化
+			value (newVal) {
+				this.val = newVal
+			}
 		},
 		created() {
 			// 设置状态栏高度
@@ -45,6 +79,24 @@
 			this.navbarWidht = menuButtonInfo.left
 			this.fillHeight = this.navbarHeight + this.statusBarHeight
 			// #endif
+		},
+		methods: {
+			goSearch () {
+				if (this.isSearch) return
+				uni.navigateTo({
+					url: '../../search/search'
+				})
+			},
+			goBack () {
+				uni.switchTab({
+					url: '../../pages/tabbar/index/index'
+				})
+			},
+			// 向父组件发送搜索的数据
+			search (e) {
+				const { value } = e.detail
+				this.$emit('input', value)
+			}
 		}
 	}
 </script>
@@ -56,6 +108,7 @@
 		width: 100%;
 		top: 0;
 		left: 0;
+		z-index: 99;
 		background-color: $mk-base-color;
 		.navbar-content{
 			padding: 0 15px;
@@ -63,6 +116,20 @@
 			display: flex;
 			align-items: center;
 			box-sizing: border-box;
+			&.search{
+				padding: 0;
+				.navbar-search{
+					margin-right: 10px;
+					border-radius: 5px;
+					.search-input{
+						color: #aa9999;;
+						font-size: 14px;
+					}
+				}
+			}
+			.back-btn{
+				margin: 0 10px;
+			}
 			.navbar-search{
 				display: flex;
 				align-items: center;
