@@ -32,7 +32,10 @@
 			};
 		},
 		watch: {
+			// 监听首页tab栏变化
 			tabList() {
+				this.cacheListData = {}
+				this.loadInfo = {}
 				this.getList(this.tabActiveIndex)
 			}
 		},

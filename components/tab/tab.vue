@@ -16,7 +16,7 @@
 			</view>
 		</scroll-view>
 		<view class="tab-scroll__icon">
-			<uni-icons type="gear" size="25"></uni-icons>
+			<uni-icons type="gear" size="25" @click="openSettings"></uni-icons>
 		</view>
 	</view>
 </template>
@@ -48,6 +48,12 @@
 				if (index === this.activeIndex) return
 				this.activeIndex = index
 				this.$emit('switchTab', [item, index])
+			},
+			// 跳转设置界面
+			openSettings () {
+				uni.navigateTo({
+					url: '../../settings/settings'
+				})
 			}
 		},
 		watch: {

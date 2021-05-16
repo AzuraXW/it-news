@@ -27,3 +27,10 @@ export function getSearch (data) {
 		data
 	})
 }
+
+export function updateLabels (data) {
+	return http({
+		url: 'update_labels',
+		data
+	})
+}

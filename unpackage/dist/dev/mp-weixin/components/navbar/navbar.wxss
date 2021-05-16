@@ -29,6 +29,7 @@
   width: 100%;
   top: 0;
   left: 0;
+  z-index: 99;
   background-color: #f07373;
 }
 .navbar-wrapper .navbar .navbar-content {
@@ -41,6 +42,20 @@
   -webkit-align-items: center;
           align-items: center;
   box-sizing: border-box;
+}
+.navbar-wrapper .navbar .navbar-content.search {
+  padding: 0;
+}
+.navbar-wrapper .navbar .navbar-content.search .navbar-search {
+  margin-right: 10px;
+  border-radius: 5px;
+}
+.navbar-wrapper .navbar .navbar-content.search .navbar-search .search-input {
+  color: #aa9999;
+  font-size: 14px;
+}
+.navbar-wrapper .navbar .navbar-content .back-btn {
+  margin: 0 10px;
 }
 .navbar-wrapper .navbar .navbar-content .navbar-search {
   display: -webkit-box;

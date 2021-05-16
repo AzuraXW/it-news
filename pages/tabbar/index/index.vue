@@ -30,6 +30,10 @@
 		},
 		async onLoad() {
 			await this.getNavbatList()
+			uni.$on('tableChange', () => {
+				this.getNavbatList()
+				this.currentTabIndex = 0
+			})
 		},
 		methods: {
 			// 获取tab数据
